@@ -1,4 +1,4 @@
- # Study 1: `Machine Learning Engineering for Production (MLOps) Specialization`
+# Study 1: `Machine Learning Engineering for Production (MLOps) Specialization`
 ## 1. Course One: Introduction to Machine Learning in Production
 ### 1.1 Week 1: Overview of the ML Lifecycle and Deployment
 #### 1.1.1 Steps of an ML Project
@@ -114,6 +114,9 @@
         * Exceptions: Covid-19, a holiday destination becomes popular all of a sudden etc.
     * Enterprise data (B2B applications) can shift fast.
         * A company start to use another raw material for their end product.
+#### 1.1.6 QUIZ
+* **Q:** You have built and deployed an anti-spam system that inputs an email and outputs either 0 or 1 based on whether the email is spam. Which of these will result in either concept drift or data drift?
+* **A:** Spammers trying to change the wording used in emails to get around your spam filter.
 ### 1.2 Week 2: 
 #### 1.2.1 
 * ...loading...
