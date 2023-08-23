@@ -117,6 +117,55 @@
 #### 1.1.6 Quiz
 * **Q:** You have built and deployed an anti-spam system that inputs an email and outputs either 0 or 1 based on whether the email is spam. Which of these will result in either concept drift or data drift?
 * **A:** Spammers trying to change the wording used in emails to get around your spam filter.
+#### 1.1.7 Week 1 References
+* [Concept and Data Drift](https://towardsdatascience.com/machine-learning-in-production-why-you-should-care-about-data-and-concept-drift-d96d0bc907fb) (not read yet)
+* [Monitoring ML Models](https://christophergs.com/machine%20learning/2020/03/14/how-to-monitor-machine-learning-models/) (not read yet)
+* [A Chat with Andrew on MLOps: From Model-centric to Data-centric](https://www.youtube.com/watch?v=06-AZXmwHjo) (not watched yet)
+* [Konstantinos, Katsiapis, Karmarkar, A., Altay, A., Zaks, A., Polyzotis, N., … Li, Z. (2020). Towards ML Engineering: A brief history of TensorFlow Extended (TFX)](http://arxiv.org/abs/2010.02013) (not read yet)
+* [Paleyes, A., Urma, R.-G., & Lawrence, N. D. (2020). Challenges in deploying machine learning: A survey of case studies.](http://arxiv.org/abs/2011.09926) (not read yet)
+* [Sculley, D., Holt, G., Golovin, D., Davydov, E., & Phillips, T. (n.d.). Hidden technical debt in machine learning systems. Retrieved April 28, 2021, from Nips.c](https://papers.nips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf) (not read yet)
 ### 1.2 Week 2: 
-#### 1.2.1 
-* ...loading...
+#### 1.2.1 Modeling Overview
+* As hinted in the _side note_ in 1.1.1, it could be more useful to collect high quality data (`data-centric AI development`) instead of solely focusing on neural network architectures (`model-centric AI development`). Of course it's not about collecting more and more data either. It is about improving the data in the most efficient possible way.
+#### 1.2.2 Key Challenges
+* _"Because machine learning is such an empirical process, being able to go through the training/error analysis/model+hyperparameters+Data loop many times very quickly, is key to improving performance."_
+* After doing enough iterations, one last thing to do could be performing a richer error analysis to audit performance.
+* For many years, the engineering team focused on the performance on dev/test sets, which failed on business metrics & project goals. After doing fine on both training and dev/test sets, it's crucial to focus on these project goals as well.
+#### 1.2.3 Why Low Average Error Isn't Good Enough
+* Performance on disproportionately important examples!
+    * User may forgive the slightly irrelevant results of the web search query `apple pie recipes`, but when the query is `reddit`, user has a crystal clear intent on this navigational query. Thus, if dev/test set performance is good in overall but the model messes up on this little group of navigational queries, it could be a serious problem. You could put more emphesis on this little but important group but it doesn't solve the entire problem.
+* Performance on key slices of the dataset
+    * Make sure not to discriminate by ethnicity, gender, location, language or other protected attributes. (Loan approval model)
+    * Be careful to treat fairly all major user, retailer, and product categories. (Product recommendation model)
+* Rare classes
+    * Skewed data distribution: 99% negative data points, 1% positive data points. If you just `print("negative")`, you could be 99% correct, which could be the dumbest thing ever. You need to focus on, for example, rare diseases in a medical dataset. A rare case could be extremely important and fatal to be ignored, even though these cases don't hurt the averate test set performance.
+* **You need to go beyond the test set and think like a product owner!**
+#### 1.2.4 Establish a Baseline
+* When you see the accuracies below, you could think that "We need to work on _low bandwidth_ accuracy!". However, if it is practically on HLP (Human Level Performance) level, you should think about improving _car noise_ speeches instead.
+
+|Type|Accuracy|HLP|Improvement|
+|:---|:---:|:---:|:---:|
+|Clear Speech|94%|95%|1%|
+|Car Noise|89%|93%|4%|
+|People Noise|87%|89%|2%|
+|Low Bandwidth|70%|70%|~0%|
+
+* HLP is a less useful baseline for a structured data (such as spreadsheet/tabular data) than images, audios and text (user comments etc.).
+* Ways to establish a baseline:
+    * HLP
+    * Literature search for SoTA/open source materials
+    * Quick-and-dirty implementation
+    * Performance of older system
+* Baseline helps to indicate what might be possible. In some cases (such as HLP), it also gives a sense of what is irreducible error/Bayes error (an upper limit to your system's potential). So, we can be much more efficient in terms of prioritizing what to work on.
+* Make this establishment in the beginning to save time!
+#### 1.2.5 Tips for Getting Started
+* Literature search to see what's possible (courses, blogs, open-source projects)
+* Find open-source implmenetations if available.
+* Don't obsess with the SoTA algorithms. A reasonable algo with good data will often outperform a great algo w/ no so good data.
+* Just get started and iterate more!
+* Should you take into account deployment constraints when picking a model?
+    * Yes, if a baseline is already established and goal is to build & deploy.
+    * No, if the purpose is to establish a baseline and determine what is possible and might be worth pursuing.
+* Sanity-check for code & algorithm
+    * Try to overfit a small training dataset before training on a large one.
+#### 1.2.6 
