@@ -1,4 +1,4 @@
-# Study 1: `Machine Learning Engineering for Production (MLOps) Specialization`
+# Study 1: Machine Learning Engineering for Production (MLOps) Specialization
 ## 1. Course One: Introduction to Machine Learning in Production
 ### 1.1 Week 1: Overview of the ML Lifecycle and Deployment
 #### 1.1.1 Steps of an ML Project
