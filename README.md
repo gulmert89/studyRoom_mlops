@@ -124,7 +124,7 @@
 * [Konstantinos, Katsiapis, Karmarkar, A., Altay, A., Zaks, A., Polyzotis, N., … Li, Z. (2020). Towards ML Engineering: A brief history of TensorFlow Extended (TFX)](http://arxiv.org/abs/2010.02013) (not read yet)
 * [Paleyes, A., Urma, R.-G., & Lawrence, N. D. (2020). Challenges in deploying machine learning: A survey of case studies.](http://arxiv.org/abs/2011.09926) (not read yet)
 * [Sculley, D., Holt, G., Golovin, D., Davydov, E., & Phillips, T. (n.d.). Hidden technical debt in machine learning systems. Retrieved April 28, 2021, from Nips.c](https://papers.nips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf) (not read yet)
-### 1.2 Week 2: 
+### 1.2 Week 2: Select and Train a Model
 #### 1.2.1 Modeling Overview
 * As hinted in the _side note_ in 1.1.1, it could be more useful to collect high quality data (`data-centric AI development`) instead of solely focusing on neural network architectures (`model-centric AI development`). Of course it's not about collecting more and more data either. It is about improving the data in the most efficient possible way.
 #### 1.2.2 Key Challenges
@@ -168,4 +168,46 @@
     * No, if the purpose is to establish a baseline and determine what is possible and might be worth pursuing.
 * Sanity-check for code & algorithm
     * Try to overfit a small training dataset before training on a large one.
-#### 1.2.6 
+#### 1.2.6 Error Analysis Example
+* Collaborative taggin, training and deploying platform: [landing.ai (formerly LandingLens)](https://landing.ai/platform/)
+* You can come up with common problems (in a speech recognition model) like "car noise", "people noise" etc. and listen random audio clips that were predicted wrong, and then thick under these problems in a regular spreadsheet. Think about your banner project, you can detect problematic products by creating such a spreadsheet and thick the possible problems.
+* Iterative process: Examine tag examples <------> Propose tags
+* Useful metric questions for each tag (error class):
+    * "What fraction of errors has that tag?" e.g. 12% in all the classes
+    * "Of all data with that tag, what fraction is misclasiffied?" e.g. all the data with "car noise", 18% is misclassified. It tells you how hard the examples with car noise are.
+    * "What fraction of all the data has that tag?"
+    * "How much room for improvement is there on data with that that?" e.g. measuring HLP.
+ #### 1.2.7 Prioritizing What to Work on
+ |Type|Accuracy|HLP|Gap to HLP|% of data|Raise in Avg. Acc.|
+|:---|:---:|:---:|:---:|:---:|:---:|
+|Clear Speech|94%|95%|1%|60%|0.60%|
+|Car Noise|89%|93%|4%|4%|0.16%|
+|People Noise|87%|89%|2%|30%|0.60%|
+|Low Bandwidth|70%|70%|~0%|6%|~0%|
+* Previously, we said that _"we should think about improving _car noise_ speeches instead"_ considering the gap to the HLP, but when we make a deeper analysis, we see that working on _people noise_ and _clear speech_ might increase the average accuracy by 0.6% individually. Thus, considering the **amount of data** is another crucial factor here!
+* To prioritizing stuff, ask yourself:
+    * How much room for improvement there is.
+    * How frequently that category appears.
+    * How easy to improve accuracy in that category is.
+    * How important it is to improve that category.
+* Thus, you don't have to collect more data for _not-that-vital_ categories and save time!
+#### 1.2.8 Skewed Datasets
+* When you have very skewed data, raw accuracy score is not much useful (remember `print("negative")` from the ***Section 1.2.3***).
+* **Confusion Matrix** (with _recall_, _precision_ & _F1-score_) is much more useful!
+    * **Precision:** [focuses on `FP`] A _not defected_ smartphone goes to human inspection since the model predicts it as _defected_. Not that crucial for the company.
+    * **Recall:** [focuses on `FN`] A _defected_ smartphone goes into the market and gets sold as defected! It is ***crucial*** for the company!
+#### 1.2.9 Performance Auditing
+* Brainstorm the ways the system might go wrong (_speech recognition_ examples below):
+    * Performance (e.g. accuracy) on subsets of data
+        * Accuracy on ethnicity, gender
+        * Accuracy on different devices
+        * Prevalence of rude mis-transcriptions (e.g. GAN --> gun, gang)
+    * How common are certain errors (e.g. FP, FN)
+    * Performance on rare classes
+* Establish metrics to assess performance against these issues on appropriate slices of data.
+    * Mean accuracy for different genders & major accents.
+    * Mean accuracy for different devices.
+    * Check for prevalence of offensive words in the output.
+* Get business/product ownder buy-in.
+#### 1.2.10 foo
+* bar
