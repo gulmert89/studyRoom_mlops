@@ -169,14 +169,14 @@
 * Sanity-check for code & algorithm
     * Try to overfit a small training dataset before training on a large one.
 #### 1.2.6 Error Analysis Example
-* Collaborative taggin, training and deploying platform: [landing.ai (formerly LandingLens)](https://landing.ai/platform/)
+* Collaborative tagging, training and deploying platform: [landing.ai (formerly LandingLens)](https://landing.ai/platform/)
 * You can come up with common problems (in a speech recognition model) like "car noise", "people noise" etc. and listen random audio clips that were predicted wrong, and then thick under these problems in a regular spreadsheet. Think about your banner project, you can detect problematic products by creating such a spreadsheet and thick the possible problems.
 * Iterative process: Examine tag examples <------> Propose tags
 * Useful metric questions for each tag (error class):
     * "What fraction of errors has that tag?" e.g. 12% in all the classes
     * "Of all data with that tag, what fraction is misclasiffied?" e.g. all the data with "car noise", 18% is misclassified. It tells you how hard the examples with car noise are.
     * "What fraction of all the data has that tag?"
-    * "How much room for improvement is there on data with that that?" e.g. measuring HLP.
+    * "How much room for improvement there is on data with that that?" e.g. measuring HLP.
  #### 1.2.7 Prioritizing What to Work on
  |Type|Accuracy|HLP|Gap to HLP|% of data|Raise in Avg. Acc.|
 |:---|:---:|:---:|:---:|:---:|:---:|
@@ -209,5 +209,12 @@
     * Mean accuracy for different devices.
     * Check for prevalence of offensive words in the output.
 * Get business/product ownder buy-in.
-#### 1.2.10 foo
+#### 1.2.10 Data-centric AI development
+* The quality of the data is paramount. Use tools to improve data quality; this will allow multiple models to do well.
+* Hold the code fixed & iteratively improve the data.
+* In academy, they hold the data fixed and work on the models because a fixed dataset lets you perform benchmark tests on different models.
+#### 1.2.11 A useful picture of data augmentation
+![A useful picture of data augmentation](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/c2w2-ungraded-lab/images/a-useful-picture-of-data-augmentation.png)
+* When we push the performance of a point up, the nearby points get affected more than the farther points.
+#### 1.2.12 foo
 * bar
