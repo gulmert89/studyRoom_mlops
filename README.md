@@ -252,4 +252,33 @@
     * Error analysis, user feedback & benchmarking to competitors can all provide inspiration for features to add.
 * In pre-deep learning era, the feature extraction and creation was more important. Now, the DL algorithms discover the features in images, sounds and texts pretty good. However, in ***structured*** data, it is still a thing.
 #### 1.2.15. Experiment Tracking
-* 
+* What to track:
+    * Algorithm/code versioning
+    * Dataset used
+    * Hyperparameters
+    * Results
+* Tracking tools:
+    * Text files (This doesn't scale well. C'mon!)
+    * (Shared) Spreadsheet
+    * Experiment tracking system
+        * ``WandB``
+        * ``Comet MLflow``
+        * ``SageMaker Studio``
+        * ``Landing.AI`` (on computer vision & manufacture systems)
+* Desirable features:
+    * Information needed to replicate results.
+    * Experiment results, ideally with summary metrics/analysis
+    * Perhaps also: Resource monitoring, visualization, model error analysis
+#### 1.2.16. From Big Big Data to Good Data
+* Try to ensure consistently high-quality data in all phases of the ML project lifecycle.
+* Good data:
+    * Covers important cases (good coverage of inputs X),
+    * Is defined consistently (definition of labels U is unambiguous),
+    * Has timely feedback from production data (distribution covers data drift & concept drift),
+    * Is sized appropriately.
+#### 1.2.17. Week 2 Optional References
+* [Establishing a baseline](https://blog.ml.cmu.edu/2020/08/31/3-baselines/)
+* [Error analysis](https://techcommunity.microsoft.com/t5/azure-ai/responsible-machine-learning-with-error-analysis/ba-p/2141774)
+* [Experiment tracking](https://neptune.ai/blog/ml-experiment-tracking)
+* [Brundage, M., Avin, S., Wang, J., Belfield, H., Krueger, G., Hadfield, G., … Anderljung, M. (n.d.). Toward trustworthy AI development: Mechanisms for supporting verifiable claims.](http://arxiv.org/abs/2004.07213v2)
+* [Nakkiran, P., Kaplun, G., Bansal, Y., Yang, T., Barak, B., & Sutskever, I. (2019). Deep double descent: Where bigger models and more data hurt](http://arxiv.org/abs/1912.02292)
