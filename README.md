@@ -282,3 +282,5 @@
 * [Experiment tracking](https://neptune.ai/blog/ml-experiment-tracking)
 * [Brundage, M., Avin, S., Wang, J., Belfield, H., Krueger, G., Hadfield, G., … Anderljung, M. (n.d.). Toward trustworthy AI development: Mechanisms for supporting verifiable claims.](http://arxiv.org/abs/2004.07213v2)
 * [Nakkiran, P., Kaplun, G., Bansal, Y., Yang, T., Barak, B., & Sutskever, I. (2019). Deep double descent: Where bigger models and more data hurt](http://arxiv.org/abs/1912.02292)
+### 1.3. Week 3: Data Definition and Baseline
+#### 1.3.1. Why is data definition hard?
