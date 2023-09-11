@@ -128,12 +128,12 @@
 #### 1.2.1. Modeling Overview
 * As hinted in the _side note_ in 1.1.1, it could be more useful to collect high quality data (`data-centric AI development`) instead of solely focusing on neural network architectures (`model-centric AI development`). Of course it's not about collecting more and more data either. It is about improving the data in the most efficient possible way.
 #### 1.2.2. Key Challenges
-* _"Because machine learning is such an empirical process, being able to go through the training/error analysis/model+hyperparameters+Data loop many times very quickly, is key to improving performance."_
+* _"Because machine learning is such an empirical process, being able to go through the training/error analysis/model+hyperparameters+Data loop many times very quickly is key to improving performance."_
 * After doing enough iterations, one last thing to do could be performing a richer error analysis to audit performance.
 * For many years, the engineering team focused on the performance on dev/test sets, which failed on business metrics & project goals. After doing fine on both training and dev/test sets, it's crucial to focus on these project goals as well.
 #### 1.2.3. Why Low Average Error Isn't Good Enough
 * Performance on disproportionately important examples!
-    * User may forgive the slightly irrelevant results of the web search query `apple pie recipes`, but when the query is `reddit`, user has a crystal clear intent on this navigational query. Thus, if dev/test set performance is good in overall but the model messes up on this little group of navigational queries, it could be a serious problem. You could put more emphesis on this little but important group but it doesn't solve the entire problem.
+    * User may forgive the slightly irrelevant results of the web search query `apple pie recipes`, but when the query is `reddit`, user has a crystal clear intent on this navigational query. Thus, if dev/test set performance is good in overall but the model messes up on this little group of navigational queries, it could be a serious problem. You could put more emphesis on this little but important group but it still doesn't solve the entire problem.
 * Performance on key slices of the dataset
     * Make sure not to discriminate by ethnicity, gender, location, language or other protected attributes. (Loan approval model)
     * Be careful to treat fairly all major user, retailer, and product categories. (Product recommendation model)
@@ -160,7 +160,7 @@
 * Make this establishment in the beginning to save time!
 #### 1.2.5. Tips for Getting Started
 * Literature search to see what's possible (courses, blogs, open-source projects)
-* Find open-source implmenetations if available.
+* Find open-source implementations if available.
 * Don't obsess with the SoTA algorithms. A reasonable algo with good data will often outperform a great algo w/ no so good data.
 * Just get started and iterate more!
 * Should you take into account deployment constraints when picking a model?
@@ -178,7 +178,7 @@
     * "What fraction of all the data has that tag?"
     * "How much room for improvement there is on data with that that?" e.g. measuring HLP.
  #### 1.2.7. Prioritizing What to Work on
- |Type|Accuracy|HLP|Gap to HLP|% of data|Raise in Avg. Acc.|
+ |Type|Accuracy|HLP|Improvement|% of data|Raise in Avg. Acc.|
 |:---|:---:|:---:|:---:|:---:|:---:|
 |Clear Speech|94%|95%|1%|60%|0.60%|
 |Car Noise|89%|93%|4%|4%|0.16%|
@@ -194,7 +194,7 @@
 #### 1.2.8. Skewed Datasets
 * When you have very skewed data, raw accuracy score is not much useful (remember `print("negative")` from the ***Section 1.2.3***).
 * **Confusion Matrix** (with _recall_, _precision_ & _F1-score_) is much more useful!
-    * **Precision:** [focuses on `FP`] A _not defected_ smartphone goes to human inspection since the model predicts it as _defected_. Not that crucial for the company.
+    * **Precision:** [focuses on `FP`] A _not defected_ smartphone goes to human inspection since the model predicts it as _defected_. Not that crucial for the company in this case.
     * **Recall:** [focuses on `FN`] A _defected_ smartphone goes into the market and gets sold as defected! It is ***crucial*** for the company!
 #### 1.2.9. Performance Auditing
 * Brainstorm the ways the system might go wrong (_speech recognition_ examples below):
@@ -219,7 +219,7 @@
 #### 1.2.12. Data Augmentation
 * What type of noise to be used? How loud shoud it be?
 * Goal is to **create realistic examples** that:
-    * the algorithm does poorly on,
+    * ***the algorithm does poorly on***,
     * but humans (or other baseline) do well on
 * Checklist:
     * Does it sound realistic?
@@ -246,7 +246,7 @@
         * This has `cold-start` problem. How do you recommend a brand-new restaurant which doesn't have any stars, reviews or comments? If no one interacted with this item, it won't be recommended to anybody.
     * **Content based filtering**: Model analyses you and the item, then matches it according to similar interests.
         * It solves the `cold-start` problem.
-        * but it requires a successful feature extraction from that brand-new item.
+        * but it requires a successful feature extraction process from that brand-new item.
 * ***Adding features*** is also an iterative process. The features are data as well! So, you add your features, train the model, do error analysis and observe the performance of the features you added, then iterate.
     * Error analysis can be harder if there is no good baseline (such as HLP) to compare to.
     * Error analysis, user feedback & benchmarking to competitors can all provide inspiration for features to add.
@@ -273,14 +273,14 @@
 * Try to ensure consistently high-quality data in all phases of the ML project lifecycle.
 * Good data:
     * Covers important cases (good coverage of inputs X),
-    * Is defined consistently (definition of labels U is unambiguous),
+    * Is defined consistently (definition of labels Y is unambiguous),
     * Has timely feedback from production data (distribution covers data drift & concept drift),
     * Is sized appropriately.
 #### 1.2.17. Week 2 Optional References
-* [Establishing a baseline](https://blog.ml.cmu.edu/2020/08/31/3-baselines/)
-* [Error analysis](https://techcommunity.microsoft.com/t5/azure-ai/responsible-machine-learning-with-error-analysis/ba-p/2141774)
-* [Experiment tracking](https://neptune.ai/blog/ml-experiment-tracking)
-* [Brundage, M., Avin, S., Wang, J., Belfield, H., Krueger, G., Hadfield, G., … Anderljung, M. (n.d.). Toward trustworthy AI development: Mechanisms for supporting verifiable claims.](http://arxiv.org/abs/2004.07213v2)
-* [Nakkiran, P., Kaplun, G., Bansal, Y., Yang, T., Barak, B., & Sutskever, I. (2019). Deep double descent: Where bigger models and more data hurt](http://arxiv.org/abs/1912.02292)
+* [Establishing a baseline](https://blog.ml.cmu.edu/2020/08/31/3-baselines/) (not read yet)
+* [Error analysis](https://techcommunity.microsoft.com/t5/azure-ai/responsible-machine-learning-with-error-analysis/ba-p/2141774) (not read yet)
+* [Experiment tracking](https://neptune.ai/blog/ml-experiment-tracking) (not read yet)
+* [Brundage, M., Avin, S., Wang, J., Belfield, H., Krueger, G., Hadfield, G., … Anderljung, M. (n.d.). Toward trustworthy AI development: Mechanisms for supporting verifiable claims.](http://arxiv.org/abs/2004.07213v2) (not read yet)
+* [Nakkiran, P., Kaplun, G., Bansal, Y., Yang, T., Barak, B., & Sutskever, I. (2019). Deep double descent: Where bigger models and more data hurt](http://arxiv.org/abs/1912.02292) (not read yet)
 ### 1.3. Week 3: Data Definition and Baseline
 #### 1.3.1. Why is data definition hard?
