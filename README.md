@@ -284,3 +284,56 @@
 * [Nakkiran, P., Kaplun, G., Bansal, Y., Yang, T., Barak, B., & Sutskever, I. (2019). Deep double descent: Where bigger models and more data hurt](http://arxiv.org/abs/1912.02292) (not read yet)
 ### 1.3. Week 3: Data Definition and Baseline
 #### 1.3.1. Why is data definition hard?
+* Because inconsistency in data labeling confuses the model while training.
+    * Remember the iguana picture.
+        * How will you draw bounding boxes for them?
+        * Are all the labelers going to treat the picture in the same way?
+        * How can we ensure labelers give consistent labels?
+#### 1.3.2. Major types of data problems
+* For small data (~10,000),
+    * Clean labels are critical.
+    * Can manually look through dataset and fix labels.
+    * Can get all the labelers to talk to each other.
+* For big data,
+    * Emphasis on data process.
+    * Clean labels are still important but it could be hard to go through a million data points.
+* For unstructured data,
+    * May or may not have huge collection of unlabeled examples $x.$
+    * Humans can label more data.
+    * Data augmentation more likely to be helpful.
+* For structured data,
+    * May be difficult to obtain more data.
+    * Human labeling may not be possible (with some exceptions - remember the "Are they the same user?" question when a company acquires another and tries to merge users.)
+* Big data problems can have small data challenges too. For examples, web search engines may have billions of queries in their databases but most of these queries are in fact rare cases.
+#### 1.3.3. Improving Label Consistency
+* Have multiple labelers label same example.
+* When in disagreement, have machine learning engineer of this project or subject matter expert (manager in responsible for that part of the factory) and/or labelers discuss definition of y to reach agreement.
+* If $x$ is too hard to work on due to various conditions, consider changing $x$.
+* Iterate until it is hard to significantly increase agreement.
+* Examples:
+    * Standardize labels (e.g. `"umm, nearest gas station"`)
+    * Merge classes (e.g. _deep scratch_ + _shallow scratch_ ==> _scratch_)
+    * Have a class/label [in the middle] to capture uncertainty, e.g:
+        * Defect: `0`, `border_line`, `1`
+        * `"umm, nearest [unintelligible]"`
+* Small Data (unstructured data):
+    * Can ask labelers to discuss specific labels since there are small number of labelers.
+* Big Data (same):
+    1. Get to consistent definition with a small group.
+    2. Then send labeling instructions to labelers.
+    3. [Last resort!] Can consider having multiple labelers label every example and using voting or consensus labels to increase accuracy.
+#### 1.3.4. Human Level Performance (HLP)
+* In academia, establish and beat a respectable benchmark to support publication.
+* Business or product owner asks for 99.9% accuracy. HLP helps establish a more reasonable target.
+* "Prove" the ML system is superior to humans doing the job and thus the business or product owner should adopt it.
+    * ***Use this argument with caution or don't use it at all.***
+* When the ground truth label is externally defined, HLP gives an estimate for Bayes error / irreducible error. But often, ground truth is ***just another human level.***
+* When the label $y$ comes from a human level, HLP << 100% may indicate ambiguous labeling instructions.
+* Improving label consistency will raise HLP. This makes it harder for ML to beat HLP but the more consistent labels will raise ML performance as well.
+* Structured data problems are less likely to involve human labelers, thus HLP is less frequently used. Some exceptions are:
+    * User ID merging: Same person or not?
+    * Based on network traffic, is the computer hacked?
+    * Is the transaction fraudulent?
+    * Spam/Bot account?
+    * From GPS data, what is the mode of transportation - on foot, bike, bus etc.?
+* **Takeaway**: Remember, if HLP << 100%, it may indicate ambiguous labeling instructions. Increasing HLP will increase your model's performance.
