@@ -178,7 +178,7 @@
     * "What fraction of all the data has that tag?"
     * "How much room for improvement there is on data with that that?" e.g. measuring HLP.
  #### 1.2.7. Prioritizing What to Work on
- |Type|Accuracy|HLP|Improvement|% of data|Raise in Avg. Acc.|
+|Type|Accuracy|HLP|Improvement|% of data|Raise in Avg. Acc.|
 |:---|:---:|:---:|:---:|:---:|:---:|
 |Clear Speech|94%|95%|1%|60%|0.60%|
 |Car Noise|89%|93%|4%|4%|0.16%|
@@ -337,3 +337,26 @@
     * Spam/Bot account?
     * From GPS data, what is the mode of transportation - on foot, bike, bus etc.?
 * **Takeaway**: Remember, if HLP << 100%, it may indicate ambiguous labeling instructions. Increasing HLP will increase your model's performance.
+#### 1.3.5. Obtaining Data
+* Let's say you spend `2 days` for **error analysis** and `2 days` for **training**. Then it is advised [by Andrew] not to spend more than ``30 days``. Surely, it could be less but the important thing here is ***to enter the iteration loop much more quickly.***
+* Instead of asking: _"How long it would take to obtain $m$ examples?"_
+* Ask: _"How much data can we obtain in $k$ days?"_
+    * Exception: If you have worked on the problem before and from experience, you know you need $m$ examples.
+* Brainstorm the list of data sources (speech recognition example) according to your time and/or money constraints:
+
+|Source|Amount|Cost|Time|
+|:-|:-:|:-:|:-:|
+|Owned|100h|$0|0|
+|Crowdsourced (Reading)|1000h|$10,000|14 days|
+|Pay for labels (More natural)|100h|$6000|7 days|
+|Purchase data|1000h|$10,000|1 day|
+
+> **Other factors:** Data quality, privacy, regulatory constraints
+* Labeling data
+    * Options: In-house vs. outsourced vs. crowdsourced
+    * Having MLEs label data is expensive. But doing this for just a few days is usually fine.
+* Who is qualified to label?
+    * Speech recognition ---> any reasonably fluent speaker
+    * Factory inspection, medical image diagnosis ---> SME (subject matter expert)
+    * Recommender systems ---> maybe impossible to label well
+* Don't increase data by more than `10x` at a time. Increasing like 1000 examples to 3000, $50\%$ more could be better or at most 10,000 but beyond that point, it is impossible to predict what would happen. You might damage the performance.
