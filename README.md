@@ -360,3 +360,12 @@
     * Factory inspection, medical image diagnosis ---> SME (subject matter expert)
     * Recommender systems ---> maybe impossible to label well
 * Don't increase data by more than `10x` at a time. Increasing like 1000 examples to 3000, $50\%$ more could be better or at most 10,000 but beyond that point, it is impossible to predict what would happen. You might damage the performance.
+#### 1.3.6. Data Pipeline
+* POC (proof-of-concept)
+    * Goal is to decide if the application is workable and worth deploying.
+    * Focus on getting the prototype to work!
+    * It's okay if data pre-processing is manual. But take extensive notes/comments not to forget the steps & procedures.
+* Production phase
+    * After project utility is established, use more sophisticated tools to make sure the data pipeline is replicable.
+    * e.g. Tensorflow Transform, Apache Beam, Airflow etc.
+#### 1.3.7. Meta-data, data provenance and lineage
