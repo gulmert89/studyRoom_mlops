@@ -143,12 +143,12 @@
 #### 1.2.4. Establish a Baseline
 * When you see the accuracies below, you could think that "We need to work on _low bandwidth_ accuracy!". However, if it is practically on HLP (Human Level Performance) level, you should think about improving _car noise_ speeches instead.
 
-|Type|Accuracy|HLP|Improvement|
-|:---|:---:|:---:|:---:|
-|Clear Speech|94%|95%|1%|
-|Car Noise|89%|93%|4%|
-|People Noise|87%|89%|2%|
-|Low Bandwidth|70%|70%|~0%|
+    |Type|Accuracy|HLP|Improvement|
+    |:---|:---:|:---:|:---:|
+    |Clear Speech|94%|95%|1%|
+    |Car Noise|89%|93%|4%|
+    |People Noise|87%|89%|2%|
+    |Low Bandwidth|70%|70%|~0%|
 
 * HLP is a less useful baseline for a structured data (such as spreadsheet/tabular data) than images, audios and text (user comments etc.).
 * Ways to establish a baseline:
@@ -344,14 +344,14 @@
     * Exception: If you have worked on the problem before and from experience, you know you need $m$ examples.
 * Brainstorm the list of data sources (speech recognition example) according to your time and/or money constraints:
 
-|Source|Amount|Cost|Time|
-|:-|:-:|:-:|:-:|
-|Owned|100h|$0|0|
-|Crowdsourced (Reading)|1000h|$10,000|14 days|
-|Pay for labels (More natural)|100h|$6000|7 days|
-|Purchase data|1000h|$10,000|1 day|
+    |Source|Amount|Cost|Time|
+    |:-|:-:|:-:|:-:|
+    |Owned|100h|$0|0|
+    |Crowdsourced (Reading)|1000h|$10,000|14 days|
+    |Pay for labels (More natural)|100h|$6000|7 days|
+    |Purchase data|1000h|$10,000|1 day|
 
-> **Other factors:** Data quality, privacy, regulatory constraints
+    > **Other factors:** Data quality, privacy, regulatory constraints
 * Labeling data
     * Options: In-house vs. outsourced vs. crowdsourced
     * Having MLEs label data is expensive. But doing this for just a few days is usually fine.
@@ -369,3 +369,62 @@
     * After project utility is established, use more sophisticated tools to make sure the data pipeline is replicable.
     * e.g. Tensorflow Transform, Apache Beam, Airflow etc.
 #### 1.3.7. Meta-data, data provenance and lineage
+* **Data provenance** refers to where the data comes from, and **data lineage** the sequence of processing steps applied to it.
+* Logging the data provenance & lineage is still in immature stages and we don't have mature tools for that. However, extensive documentation could help you replicate the system and pursue errors along the way.
+* **Meta-data:** Data above data, such as time, factory, line #, camera settings, phone model, inspector ID etc.
+    * They could be quite useful when inspected with data (phone pictures in the assembly line).
+    * For example, the images from line 17 in factory 2 could be problematic due to some condition.
+* Meta-data is useful for:
+    * error analysis,
+    * spotting unexpected effects,
+    * keeping track of data provenance.
+#### 1.3.8. Balanced train/dev/test splits
+* Let's say, you have a small dataset and you specified your train/dev/test percentages as $60/20/20$.
+    * You have $100$ examples with $30$ positive and $70$ negative labels.
+    * You split it randomly and got $21/2/7$ positive examples, which is an imbalanced split!
+        * because you now have $35/10/35\%$ split.
+    * Desired split: $18/6/6$ positive examples
+        * which gives you a split of train/dev/test with $30/30/30\%$.
+* So, if you have a small and imbalanced dataset, you make sure that the split is done randomly but manually arranged.
+#### 1.3.9. Quiz
+* **Q:** You have a data pipeline for product recommendations that (i) cleans data by removing duplicate entries and spam, (ii) makes predictions. An engineering team improves the system used for step (i). If the trained model for step (ii) remains the same, what can we confidently conclude about the performance of the overall system?
+    * **False Answer:** It will get worse because stage (ii) is now experiencing data/concept drift.
+        * _Close! This could happen - it really depends on what changes were made and how they affect the model. However, it's also possible that the performance of the model improves._
+    * **False Answer:** It will definitely improve since the data is now more clean.
+        * _Not exactly! The performance of the system could improve. However, although the data is cleaner, your model was trained on the original messier data and it's performance could drop as a result of this data/concept drift._
+    * **Correct Answer:** It's not possible to say - it may perform better or worse.
+        * _That's right! It's really hard to tell, as it depends on how the data was changed, and how your model behaves._
+* **Q:** You are building a visual inspection system. HLP is measured according to _how well one inspector agrees with another._ Error analysis finds:
+
+    |Type of Defect|Accuracy|HLP|% of data|
+    |:-|:-:|:-:|:-:|
+    |Scratch|95%|98%|50%|
+    |Discoloration|90%|90%|50%|
+
+    You decide that it might be worth _checking for label consistency_ on both scratch and discoloration defects. If you had to pick one to start with, which would you pick?
+    
+    * **A:** It is more promising to check (and potentially improve) label consistency on discoloration defects than scratch defects. Since HLP is lower on discoloration, it's possible that there might be ambiguous labelling instructions that is affecting HLP. _A high HLP metric implies good label consistency, therefore there isn't much room for improvement of HLP for scratch defects. If you find that the labels are indeed consistent for both scratch and discoloration, then you can proceed to closing the model accuracy gap to HLP._
+#### 1.3.10. What is scoping?
+* Scoping example: E-commerce retailer looking to increase sales. Possible projects:
+    * Better recommender system
+    * Better search
+    * Improve catalogue data
+    * Inventory management
+    * Price optimization
+* So, which one to pick? Here are some of the key questions:
+    * What project should we work on?
+    * What are the metrics for success?
+    * What are the resources (data, time, people) needed?
+#### 1.3.11. Scoping Process
+* _"I don't want to hear about your AI problems. I want to hear about your business problems and then it's my job to work with you to see if there is an AI solution."_
+* Brainstorm business problems first: _"What are the top 3 things you wish were working better?"_
+    * Increase conversion, reduce inventory, increase margin (profit per item).
+    * As engineers, we are good at coming up with solutions but articulating the problem is the key factor here which will make the solution clearer.
+* Brainstorm AI solutions
+* Assess the feasibility & value of potential solutions
+* Determine milestones
+* Budget for resources
+* Problems ``[what to achieve]`` ---> Solutions ``[how to achieve]``
+    * Increase conversion ---> Improve ***search*** results, offer better ***recommendation*** etc.
+    * Reduce inventory ---> ***Demand prediction*** project to estimate the amount of purchases, come up with ***marketing*** campaigns
+    * Increase margin (profit per item) ---> ***Optimizing what to sell*** (e.g. merchandising), ***recommend bundles***
