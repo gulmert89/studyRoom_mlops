@@ -428,3 +428,11 @@
     * Increase conversion ---> Improve ***search*** results, offer better ***recommendation*** etc.
     * Reduce inventory ---> ***Demand prediction*** project to estimate the amount of purchases, come up with ***marketing*** campaigns
     * Increase margin (profit per item) ---> ***Optimizing what to sell*** (e.g. merchandising), ***recommend bundles***
+#### 1.3.12. Diligence on feasibility & value
+* A person in the car can see the traffic lights much better than you who is looking at a picture of traffic lights in your office. Thus, don't automatically think that a detection model could be implemented easily since the person in the car can see it. You, the taggers and the model will only see the pictures of traffic lights!
+* Use external benchmarks to find out if the project is technically feasible or not.
+    * Literature search
+    * Other companies
+    * Competitors
+* Feasibility check in HLP aspect [``unstructured data``]: Can a human, given the same data, perform the same task?
+* For `structured data`: Predictive features are available?
