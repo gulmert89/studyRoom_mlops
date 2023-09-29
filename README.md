@@ -116,7 +116,7 @@
         * A company start to use another raw material for their end product.
 #### 1.1.6. Quiz
 * **Q:** You have built and deployed an anti-spam system that inputs an email and outputs either 0 or 1 based on whether the email is spam. Which of these will result in either concept drift or data drift?
-* **A:** Spammers trying to change the wording used in emails to get around your spam filter.
+    * **A:** Spammers trying to change the wording used in emails to get around your spam filter.
 #### 1.1.7. Week 1 References
 * [Concept and Data Drift](https://towardsdatascience.com/machine-learning-in-production-why-you-should-care-about-data-and-concept-drift-d96d0bc907fb) (not read yet)
 * [Monitoring ML Models](https://christophergs.com/machine%20learning/2020/03/14/how-to-monitor-machine-learning-models/) (not read yet)
@@ -473,3 +473,8 @@
 * [Data lineage](https://blog.tensorflow.org/2021/01/ml-metadata-version-control-for-ml.html) (not read yet)
 * [MLops](https://cloud.google.com/blog/products/ai-machine-learning/key-requirements-for-an-mlops-foundation) (not read yet)
 * [Geirhos, R., Janssen, D. H. J., Schutt, H. H., Rauber, J., Bethge, M., & Wichmann, F. A. (n.d.). Comparing deep neural networks against humans: object recognition when the signal gets weaker.](https://arxiv.org/pdf/1706.06969.pdf) (not read yet)
+#### 1.3.16. Quiz
+* **Q:** You are considering building a product recommendation system. You carried out diligence on feasibility (the ability to give relevant recommendations), but not diligence on value. Which of these is the biggest risk for what could go wrong?
+    * **A:** You build the system and it gives relevant recommendations, but the system does not meaningfully improve key business metrics such as sales conversions or revenue. This is why it's important to evaluate the business value of a project early on in the scoping process - so that you're addressing real business problems.
+* **Q:** Which of these statements is the most accurate?
+    * **A:** There is often a gap between MLE metrics (such as accuracy) and business metrics (such as revenue), and it is useful to try to have the team compromise and agree on a middle ground that both teams are happy with.
