@@ -467,7 +467,7 @@
     | Features | Basic features that are necessary to demonstrate the feasibility of the concept | Core features that are necessary to provide value to customers |
     | Level of polish | May be rough and unpolished | Should be polished and user-friendly |
     | Go-to-market strategy | Not intended to be released to the public | Intended to be released to a small group of early customers |
-### 1.3.15. Week 3 Optional References
+#### 1.3.15. Week 3 Optional References
 * [Label ambiguity](https://csgaobb.github.io/Projects/DLDL.html) (not read yet)
 * [Data pipelines](https://cs230.stanford.edu/blog/datapipeline/#best-practices) (not read yet)
 * [Data lineage](https://blog.tensorflow.org/2021/01/ml-metadata-version-control-for-ml.html) (not read yet)
