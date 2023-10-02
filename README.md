@@ -214,7 +214,7 @@
 * Hold the code fixed & iteratively improve the data.
 * In academy, they hold the data fixed and work on the models because a fixed dataset lets you perform benchmark tests on different models.
 #### 1.2.11. A useful picture of data augmentation
-![A useful picture of data augmentation](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/c2w2-ungraded-lab/images/a-useful-picture-of-data-augmentation.png)
+![A useful picture of data augmentation](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/assets/a-useful-picture-of-data-augmentation.png)
 * When we push the performance of a point up, the nearby points get affected more than the farther points.
 #### 1.2.12. Data Augmentation
 * What type of noise to be used? How loud shoud it be?
