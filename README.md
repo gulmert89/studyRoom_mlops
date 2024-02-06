@@ -480,4 +480,72 @@
     * **A:** There is often a gap between MLE metrics (such as accuracy) and business metrics (such as revenue), and it is useful to try to have the team compromise and agree on a middle ground that both teams are happy with.
 ## 2. Course Two: Machine Learning Data Lifecycle in Production
 ### 2.1. Week 1: Collecting, Labeling and Validating Data
-#### 2.1.1. Steps of an ML Project
+#### 2.1.1. Introduction
+* ML modeling vs. Production ML
+
+    ||Academic/Research ML|Production ML|
+    |:-|:-:|:-:|
+    |**Data**|Static|Dynamic - Shifting|
+    |**Priority for Design**| Highest overall accuracy|Fast inference, good interpretability|
+    |**Model Training**|Optimal tuning & training|Continuously assess & retrain|
+    |**Fairness**|Very important|Crucial|
+    |**Challenge**|High accuracy algorithm|Entire system|
+* Modern software development accounts for:
+    * Scalability
+    * Extensibility (add new stuff when needed)
+    * Configuration (clear, well defined)
+    * Consistency & reproducibility
+    * Safety & security
+    * Modularity (modern software development principles)
+    * Testability
+    * Monitoring
+    * (Industry) Best Practices
+* MLOps Architecture
+    ![MLOps Architecture](./mlops_specialization/assets/the_pipeline.png)
+* Pipeline orchestration frameworks
+    * Responsible for scheduling the various components in an ML pipeline DAG (Directed Acyclic Graph) dependencies.
+    * Help with pipeline automation.
+    * Examples: Airflow, Argo, Celery, Luigi, Kubeflow
+* `TensorFlow Extended` (TFX)
+    * End-to-end platform for deploying production ML pipelines [similar to the image above].
+    * Sequence of components that are designed for scalable, high-performance machine learning tasks.
+#### 2.1.2. Quiz
+ * _"In production ML, the design priority is fast training."_ No! Fast training and choosing a high-performance algorithm are the design priorities for prototypes or research ML.
+* What are **NOT** the unique challenges to overcome in a production-grade ML system?
+    * Assessing model performance: As figuring out the right performance metric is a general ML challenge, but is not restricted to production systems.
+    * Training the model on real world data: Although a challenge for all ML, this is not strictly a production challenge.
+    * Deploying the model to serve requests: While this is a fundamental aspect of ML systems, it is not a challenge to overcome.
+* Production grade machine learning challenges are addressed by implementing an important concept:
+    * [FALSE - My answer] Directed Acyclic Graphs (DAGs): ML pipeline workflows are almost always DAGs. The components of an ML pipeline are scheduled based on dependencies defined by a DAG.
+    * [TRUE] Machine learning pipelines: ML pipelines provide support for automating, monitoring and maintaining a model as you continue to train it over its lifetime.
+#### 2.1.3. Collecting Data: Importance of Data
+*  Meaningful data:
+    * Maximize predictive content
+    * Remove non-informative data
+    * Feature space coverage
+* Feature engineering helps to maximize the predictive signals.
+* Feature selection helps to measure the predictive signals.
+#### 2.1.4. Responsible Data
+* Data security & privacy: Data collection and management isn't just about your model.
+    * Give user control of what data can be collected.
+    * Is there a risk of inadvertently revealing user data?
+* Compliance with regulations and policies (e.g. GDPR).
+* Protect personally identifiable information.
+    * Aggregation - Replace unique values with summary value.
+    * Redaction - Remove some data to create less complete picture.
+* Maintain fairness! There could be bias in human labeled and collected data.
+* ML models can amplify biases. Various failure modes:
+    * Representational harm (negative stereotypes)
+    * Opportunity denial (negative real life consequences)
+    * Disproportionate product failure (skewed outputs for particular groups)
+    * Harm by disadvantage (infer disadvantageous associations with different demographic groups)
+#### 2.1.5. Quiz
+* A data pipeline is a series of data processing steps such as:
+    * Data collection: Data collection is the first step in building ML systems.
+    * Data ingestion: Data ingestion is the process of absorbing data from different sources and transferring it to a target site where it can be deposited and analyzed.
+    * Data Preparation: Data Preparation consists of data formatting, engineering and feature extraction.
+* Balanced sampling from different user groups helps avoid inherent biases.
+* Type of raters:
+    * Generalists: Generalists usually come from crowdsourcing sites.
+    * Subject matter experts: A classical example is radiologists labeling medical images for automated diagnosis tools.
+    * Your users: Users can provide labels within your application. A classical example is photo tagging.
