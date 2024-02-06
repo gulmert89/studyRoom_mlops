@@ -478,3 +478,6 @@
     * **A:** You build the system and it gives relevant recommendations, but the system does not meaningfully improve key business metrics such as sales conversions or revenue. This is why it's important to evaluate the business value of a project early on in the scoping process - so that you're addressing real business problems.
 * **Q:** Which of these statements is the most accurate?
     * **A:** There is often a gap between MLE metrics (such as accuracy) and business metrics (such as revenue), and it is useful to try to have the team compromise and agree on a middle ground that both teams are happy with.
+## 2. Course Two: Machine Learning Data Lifecycle in Production
+### 2.1. Week 1: Collecting, Labeling and Validating Data
+#### 2.1.1. Steps of an ML Project
