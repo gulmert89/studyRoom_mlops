@@ -618,12 +618,12 @@
     |**Conditional**|$P_{train}(y\|x)$|$P_{serve}(y\|x)$|
     |**Marginal**|$P_{train}(x)$|$P_{serve}(x)$|
     * **Dataset shift:** Occurs when the joint probability of $X$ and $Y$ is not the same during training and serving. The data has shifted over time.
-        * $P_{train}(y,x) \neq P_{serve}(y,x)$
+        * $\large P_{train}(y,x) \neq P_{serve}(y,x)$
     * **Covariate Shift:** Refers to the change in distribution of the input variables present in training and serving data. In other words, it's where the marginal distribution of $X$ is not the same during training and serving, but the conditional distribution remains unchanged.
-        * $P_{train}(y|x) = P_{serve}(y|x)$
-        * $P_{train}(x) \neq P_{serve}(x)$
+        * $\large P_{train}(y|x) = P_{serve}(y|x)$
+        * $\large P_{train}(x) \neq P_{serve}(x)$
     * **Concept Shift:** Refers to a change in the relationship between the input and output variables as opposed to the differences in the data distribution or input itself. In other words, it's when the conditional distribution of $Y$ given $X$ is not the same during training and serving, but the marginal distribution of x are features remains unchanged.
-        * $P_{train}(y|x) \neq P_{serve}(y|x)$
-        * $P_{train}(x) = P_{serve}(x)$
+        * $\large P_{train}(y|x) \neq P_{serve}(y|x)$
+        * $\large P_{train}(x) = P_{serve}(x)$
 * **Skew Detection Flow:** You calculate the statistics for training and serve data and compare them.
 ![Skew Chart](https://github.com/gulmert89/studyRoom_mlops/blob/main/mlops_specialization/assets/skew.png)
