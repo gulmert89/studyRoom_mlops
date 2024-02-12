@@ -625,6 +625,5 @@
     * **Concept Shift:** Refers to a change in the relationship between the input and output variables as opposed to the differences in the data distribution or input itself. In other words, it's when the conditional distribution of $Y$ given $X$ is not the same during training and serving, but the marginal distribution of x are features remains unchanged.
         * $P_{train}(y|x) \neq P_{serve}(y|x)$
         * $P_{train}(x) = P_{serve}(x)$
-* **Skew Detection Flow:**
-![skew.png](./mlops_specialization/assets/skew.png)
-    * You calculate the statistics for training and serve data and compare them.  
+* **Skew Detection Flow:** You calculate the statistics for training and serve data and compare them.
+![Skew Chart](./mlops_specialization/assets/skew.png)
