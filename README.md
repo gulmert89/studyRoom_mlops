@@ -512,9 +512,9 @@
 #### 2.1.2. Quiz
  * _"In production ML, the design priority is fast training."_ No! Fast training and choosing a high-performance algorithm are the design priorities for prototypes or research ML.
 * What are **NOT** the unique challenges to overcome in a production-grade ML system?
-    * Assessing model performance: As figuring out the right performance metric is a general ML challenge, but is not restricted to production systems.
-    * Training the model on real world data: Although a challenge for all ML, this is not strictly a production challenge.
-    * Deploying the model to serve requests: While this is a fundamental aspect of ML systems, it is not a challenge to overcome.
+    * _Assessing model performance:_ As figuring out the right performance metric is a general ML challenge, but is not restricted to production systems.
+    * _Training the model on real world data:_ Although a challenge for all ML, this is not strictly a production challenge.
+    * _Deploying the model to serve requests:_ While this is a fundamental aspect of ML systems, it is not a challenge to overcome.
 * Production grade machine learning challenges are addressed by implementing an important concept:
     * [FALSE - My answer] Directed Acyclic Graphs (DAGs): ML pipeline workflows are almost always DAGs. The components of an ML pipeline are scheduled based on dependencies defined by a DAG.
     * [TRUE] Machine learning pipelines: ML pipelines provide support for automating, monitoring and maintaining a model as you continue to train it over its lifetime.
@@ -541,11 +541,90 @@
     * Harm by disadvantage (infer disadvantageous associations with different demographic groups)
 #### 2.1.5. Quiz
 * A data pipeline is a series of data processing steps such as:
-    * Data collection: Data collection is the first step in building ML systems.
-    * Data ingestion: Data ingestion is the process of absorbing data from different sources and transferring it to a target site where it can be deposited and analyzed.
-    * Data Preparation: Data Preparation consists of data formatting, engineering and feature extraction.
+    * _Data collection:_ Data collection is the first step in building ML systems.
+    * _Data ingestion:_ Data ingestion is the process of absorbing data from different sources and transferring it to a target site where it can be deposited and analyzed.
+    * _Data Preparation:_ Data Preparation consists of data formatting, engineering and feature extraction.
 * Balanced sampling from different user groups helps avoid inherent biases.
 * Type of raters:
     * Generalists: Generalists usually come from crowdsourcing sites.
     * Subject matter experts: A classical example is radiologists labeling medical images for automated diagnosis tools.
     * Your users: Users can provide labels within your application. A classical example is photo tagging.
+#### 2.1.6. Case Study: Degraded Model Performance
+* Slow changes:
+    * Data changes:
+        * Trend and seasonality
+        * Distribution of features changes
+        * Relative importance of feature changes
+    * World changes:
+        * Styles change
+        * Scope and processes change
+        * Competitors change
+        * Business expands to other geos
+* Fast changes:
+    * Data collection problem:
+        * Bad sensor/camera
+        * Bad log data
+        * Moved or disabled sensors/cameras
+    * System problem:
+        * Bad software update
+        * Loss of network connectivity
+        * System down
+        * Bad credentials
+* The **data you have** is rarely the data you wish you had.
+* Easy problems: Ground truth changes slow (months/years) - Cats & dogs classifications
+* Harder problems: G.T. changes faster (weeks) - Styles of different shoes
+* Really hard problems: G.T. changes very fast - Stock market
+    * Labeling: Direct feedback & weak supervision
+#### 2.1.7. Process Feedback and Human Labeling
+* **Process Feedback (Direct Labeling)**
+    * Example: Actual vs. predicted CTR
+    * Automated or semi-automated labeling processes. This might involve algorithms or machine learning models that assign labels to data based on predefined criteria or patterns they've learned from training data.
+    * Advantages:
+        * Continuous creation of training dataset
+        * Labels evolve quickly
+        * Captures strong label signals
+    * Disadvantages:
+        * The quality of labels might be lower, especially in complex tasks where contextual understanding is key.
+        * Failure to capture ground truth
+    * `Logstash`: Free & open source data processing pipeline.
+    * `Fluentd`: Open source data collector. Unifies the data collection & consumption.
+* **Human Labeling**
+    * Example: Cardiologists labeling MRI images
+    * People (raters) to examine data & assign labels manually.
+    * Pure supervised. However could be slow, expensive and inconsistent. 
+* ~~**Semi-Supervised Labeling**~~ [Discussed later]
+* ~~**Active Learning**~~
+* ~~**Weak Supervision**~~
+#### 2.1.8. Quiz
+* Q: Which factors substantially complicate production machine learning?
+    * "Model Retraining driven by declining model performance."
+    * "Labeling through Weak Supervision"
+* Direct Labeling is one of the methods used in production ML to label data. About it we can say that: 
+    * [FALSE] _"With it, obtained labels don’t adapt quickly to world changes."_ Sorry, this is incorrect. With direct labeling, labels evolve quickly as the world changes.
+    * [TRUE] _"It captures strong label signals."_
+    * [TRUE] _"It needs to match prediction results with their corresponding original inference request."_ That’s right! Feature selection identifies features with predictive power.
+#### 2.1.9. Detecting Data Issues
+* **Drift:** Changes in data over time, such as data collected once a day.
+    * **Data Drift:** Changes in the statistical properties of the features, e.g. due to seasonality, trend, unexpected events etc.
+    * **Concept Drift:** Changes in the statistical properties of the labels over time. 
+* **Skew:** Difference between two static versions, or different sources, such as training set and serving set.
+    * **Schema Skew:** Training and serving data do not conform to the same schema, e.g. getting a string where you are expecting an integer.
+    * **Distribution Skew:** Dataset shift ---> Covariate or concept drift.
+* Math:
+
+    ||**Training**|**Serving**|
+    |:-|:-:|:-:|
+    |**Joint**|$P_{train}(y,x)$|$P_{serve}(y,x)$|
+    |**Conditional**|$P_{train}(y\|x)$|$P_{serve}(y\|x)$|
+    |**Marginal**|$P_{train}(x)$|$P_{serve}(x)$|
+    * **Dataset shift:** Occurs when the joint probability of $X$ and $Y$ is not the same during training and serving. The data has shifted over time.
+        * $P_{train}(y,x) \neq P_{serve}(y,x)$
+    * **Covariate Shift:** Refers to the change in distribution of the input variables present in training and serving data. In other words, it's where the marginal distribution of $X$ is not the same during training and serving, but the conditional distribution remains unchanged.
+        * $P_{train}(y|x) = P_{serve}(y|x)$
+        * $P_{train}(x) \neq P_{serve}(x)$
+    * **Concept Shift:** Refers to a change in the relationship between the input and output variables as opposed to the differences in the data distribution or input itself. In other words, it's when the conditional distribution of $Y$ given $X$ is not the same during training and serving, but the marginal distribution of x are features remains unchanged.
+        * $P_{train}(y|x) \neq P_{serve}(y|x)$
+        * $P_{train}(x) = P_{serve}(x)$
+* **Skew Detection Flow:**
+![skew.png](./mlops_specialization/assets/skew.png)
+    * You calculate the statistics for training and serve data and compare them.  
