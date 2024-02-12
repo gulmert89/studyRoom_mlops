@@ -626,4 +626,4 @@
         * $\large P_{train}(y|x) \neq P_{serve}(y|x)$
         * $\large P_{train}(x) = P_{serve}(x)$
 * **Skew Detection Flow:** You calculate the statistics for training and serve data and compare them.
-![Skew Chart](https://github.com/gulmert89/studyRoom_mlops/blob/main/mlops_specialization/assets/skew.png)
+![Skew Chart](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/assets/skew.png)
