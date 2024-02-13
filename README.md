@@ -614,9 +614,9 @@
 
     ||**Training**|**Serving**|
     |:-|:-:|:-:|
-    |**Joint**|$P_{train}(y,x)$|$P_{serve}(y,x)$|
-    |**Conditional**|$P_{train}(y\|x)$|$P_{serve}(y\|x)$|
-    |**Marginal**|$P_{train}(x)$|$P_{serve}(x)$|
+    |**Joint**|$\large P_{train}(y,x)$|$\large P_{serve}(y,x)$|
+    |**Conditional**|$\large P_{train}(y\|x)$|$\large P_{serve}(y\|x)$|
+    |**Marginal**|$\large P_{train}(x)$|$\large P_{serve}(x)$|
     * **Dataset shift:** Occurs when the joint probability of $X$ and $Y$ is not the same during training and serving. The data has shifted over time.
         * $\large P_{train}(y,x) \neq P_{serve}(y,x)$
     * **Covariate Shift:** Refers to the change in distribution of the input variables present in training and serving data. In other words, it's where the marginal distribution of $X$ is not the same during training and serving, but the conditional distribution remains unchanged.
@@ -627,3 +627,30 @@
         * $\large P_{train}(x) = P_{serve}(x)$
 * **Skew Detection Flow:** You calculate the statistics for training and serve data and compare them.
 ![Skew Chart](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/assets/skew.png)
+#### 2.1.10. TensorFlow Data Validation
+* TFDV Capabilities:
+    * Generates data statistics & browser visualization
+    * Infers the data schema
+    * Performs validity checks against schema
+    * Detects training/serving skew
+* One of the skew measure metric: **Chebyshev distance**:
+    * $\large D_{Chebyshev}\left(x,y\right) = \max _{i} ( \left| \begin{matrix} x_{i}-y_{i}\end{matrix} \right|   )$
+    * Also known as ***chessboard distance*** and ***L-infinity*** distance.
+    * Typically used to determine the degree of data drift.
+* Set a threshold to receive warnings.
+* **Schema Skew:** string vs. integer example
+* **Feature Skew:** Differences in feature values (training vs. serving)
+    * Maybe you forgot to apply a transformation to your serving data.
+* **Distribution Skew**
+    * Changes in mean, std, median etc.
+    * Trend, seasonality etc.
+    * Different data sources for training and serving data
+* TFDV:
+    * Provides descriptive statistics at scale with the embedded facets visualizations.
+    * TFDV goes beyond computing relevant statistics, it also has nice browser-based visualization tools.
+    * Infers schema: Schemas describe the expectations for "correct" data and can thus be used to detect errors in the data.
+    * can check your data for error in the aggregate across an entire dataset or by checking for errors on a per-example basis.
+
+
+#### 2.1.11. Week 1 Optional References
+* Click [here](https://www.coursera.org/learn/machine-learning-data-lifecycle-in-production/supplement/fFaLk/week-1-optional-references) to visit the Coursera page to read all the optional material. (not read yet)
