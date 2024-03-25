@@ -625,7 +625,7 @@
         * $\large P_{train}(y|x) \neq P_{serve}(y|x)$
         * $\large P_{train}(x) = P_{serve}(x)$
 * **Skew Detection Flow:** You calculate the statistics for training and serve data and compare them.
-![Skew Chart](./assets/skew.png)
+![Skew Chart](assets/skew.png)
 #### 2.1.10. TensorFlow Data Validation
 * TFDV Capabilities:
     * Generates data statistics & browser visualization
