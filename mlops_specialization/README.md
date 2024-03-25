@@ -213,7 +213,7 @@
 * Hold the code fixed & iteratively improve the data.
 * In academy, they hold the data fixed and work on the models because a fixed dataset lets you perform benchmark tests on different models.
 #### 1.2.11. A useful picture of data augmentation
-![A useful picture of data augmentation](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/assets/a-useful-picture-of-data-augmentation.png)
+![A useful picture of data augmentation](./assets/a-useful-picture-of-data-augmentation.png)
 * When we push the performance of a point up, the nearby points get affected more than the farther points.
 #### 1.2.12. Data Augmentation
 * What type of noise to be used? How loud shoud it be?
@@ -500,7 +500,7 @@
     * Monitoring
     * (Industry) Best Practices
 * MLOps Architecture
-    ![MLOps Architecture](./mlops_specialization/assets/the_pipeline.png)
+    ![MLOps Architecture](./assets/the_pipeline.png)
 * Pipeline orchestration frameworks
     * Responsible for scheduling the various components in an ML pipeline DAG (Directed Acyclic Graph) dependencies.
     * Help with pipeline automation.
@@ -625,7 +625,7 @@
         * $\large P_{train}(y|x) \neq P_{serve}(y|x)$
         * $\large P_{train}(x) = P_{serve}(x)$
 * **Skew Detection Flow:** You calculate the statistics for training and serve data and compare them.
-![Skew Chart](https://raw.githubusercontent.com/gulmert89/studyRoom_mlops/main/mlops_specialization/assets/skew.png)
+![Skew Chart](./assets/skew.png)
 #### 2.1.10. TensorFlow Data Validation
 * TFDV Capabilities:
     * Generates data statistics & browser visualization
