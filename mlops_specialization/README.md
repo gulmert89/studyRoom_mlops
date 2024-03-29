@@ -654,4 +654,25 @@
 ### 2.1.11. Week 1 Optional References
 * Click [here](https://www.coursera.org/learn/machine-learning-data-lifecycle-in-production/supplement/fFaLk/week-1-optional-references) to visit the Coursera page to read all the optional material. (not read yet)
 ## 2.2. Week 2: Feature Engineering
-### 2.2.1. 
+### 2.2.1. Feature Engineering Techniques
+* **Normalization $[0, 1]$**: If the feature distribution is ***not Gaussian/Normal distribution***, it is a good starting point.
+* Try both ***normalization*** and ***standardization (z-score)*** while training. It may or may not make a difference.
+* **Bucketizing/Binning**:
+
+|Date Range|Representation (One-hot Enc.)|
+|:-:|:-:|
+|< 1960|[1, 0, 0]|
+|>= 1960 but < 1980|[0, 1, 0]|
+|>= 1980 but < 2000|[0, 0, 1]|
+### 2.2.2. Feature Crosses
+* **Feature Crossing**: Synthetic feature encoding nonlinearity in feature space. (e.g. multiplying two numeric features)
+* **Feature Coding**: Transforming categoricals to a continuous variable (e.g. creating 1 feature out of 2: "day of the week" + "hour" ---> "hour of the week", which is between 0-168h)
+### 2.2.3. Quiz
+* Performing feature engineering on the latitude and longitude columns:
+    * _"Bucketize the locations into discrete bins then do a feature cross of the latitude and longitude."_ ---> Correct! Bucketizing then crossing the features can possibly enhance the predictive quality of the data. For example, a latitude x longitude cross of the pickup locations can let the model learn which combination of these features yield to a bigger tip.
+    * _"Bucketize the locations into discrete bins."_ ---> Correct! Bucketizing the coordinates will group close proximities together. With this technique, the model can learn which areas are likely to give a bigger tip.
+    * _"Because the data does not assume a Gaussian distribution, you should normalize these location features to put the values into the range [0,1] so it can help the training converge faster."_ ---> False! Normalization of the raw data implies that these geographic coordinates carry quantitative meaning. In this application, that can be counter-intuitive. For example: given all other features are constant, you can't always say that a bigger tip will be given just because the pickup location is 1 degree longitude "greater" than a previous trip.
+### 2.2.4. Preprocessing Data at Scale
+* **Mobile**: TensorFlow Lite
+* **Server**: TensorFlow Serving
+* **Web**: TensorFlow JS
