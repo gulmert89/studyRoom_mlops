@@ -648,8 +648,9 @@
     * Provides descriptive statistics at scale with the embedded facets visualizations.
     * TFDV goes beyond computing relevant statistics, it also has nice browser-based visualization tools.
     * Infers schema: Schemas describe the expectations for "correct" data and can thus be used to detect errors in the data.
-    * can check your data for error in the aggregate across an entire dataset or by checking for errors on a per-example basis.
+    * Can check your data for error in the aggregate across an entire dataset or by checking for errors on a per-example basis.
 
 
 #### 2.1.11. Week 1 Optional References
 * Click [here](https://www.coursera.org/learn/machine-learning-data-lifecycle-in-production/supplement/fFaLk/week-1-optional-references) to visit the Coursera page to read all the optional material. (not read yet)
+### 2.2. Week 2: 
