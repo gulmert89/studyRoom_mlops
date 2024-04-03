@@ -676,3 +676,8 @@
 * **Mobile**: TensorFlow Lite
 * **Server**: TensorFlow Serving
 * **Web**: TensorFlow JS
+### 2.2.5. TensorFlow Transform
+* For preprocessing data at scale: `tf.Transform`
+* Stats like `mean`, `stddev`, `quantiles` are calculated dynamically during training. However, while serving and applying transformations to serving data, they become constant tensors since the training has been completed.
+* Thus, no need for preprocessing code at serving time, irrespective of deployment platform.
+![tftransform.jpeg](./assets/tftransform.jpeg)
